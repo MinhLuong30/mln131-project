@@ -242,21 +242,24 @@ export default function Content() {
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Working Class */}
-            <div className="bg-card p-8 rounded-lg border">
+            <div className="bg-card p-8 rounded-lg border relative overflow-hidden">
+              <div className="absolute inset-0 bg-[url('/lienminhchinhtri.jpg')] bg-cover bg-center opacity-20 clip-path-diagonal"></div>
+              <div className="relative z-10">
               <div className="flex items-center mb-4">
                 <Hammer className="h-8 w-8 text-primary mr-3" />
                 <h3 className="text-2xl font-bold text-primary">
-                  {contentText.structure.workingClass.title}
+                {contentText.structure.workingClass.title}
                 </h3>
               </div>
               <ul className="space-y-3 text-muted-foreground">
                 {contentText.structure.workingClass.points.map((point, index) => (
-                  <li key={index} className="flex items-start">
-                    <Star className="h-4 w-4 text-secondary mt-1 mr-2 flex-shrink-0 fill-current" />
-                    {point}
-                  </li>
+                <li key={index} className="flex items-start">
+                  <Star className="h-4 w-4 text-secondary mt-1 mr-2 flex-shrink-0 fill-current" />
+                  {point}
+                </li>
                 ))}
               </ul>
+              </div>
             </div>
 
             {/* Peasant Class */}
@@ -364,9 +367,15 @@ export default function Content() {
                   </ul>
                 </div>
                 <div className="bg-muted p-4 rounded-lg">
-                  <p className="text-sm text-muted-foreground italic">
+                  {/* <p className="text-sm text-muted-foreground italic">
                     "{contentText.alliance.economic.quote}"
-                  </p>
+                  </p> */}
+                  <iframe
+                    src="https://www.youtube.com/embed/RAUTrTAZkl4?si=zIK2Auq0ugLuC2kz"
+                    className="rounded-md shadow-md w-full h-80 mx-auto"
+                    allowFullScreen
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  />
                 </div>
               </div>
             </div>
@@ -392,10 +401,17 @@ export default function Content() {
                   </ul>
                 </div>
                 <div className="bg-muted p-4 rounded-lg">
-                  <Star className="h-8 w-8 text-primary mx-auto mb-2 fill-current" />
-                  <p className="text-sm text-muted-foreground text-center">
-                    {contentText.alliance.political.leadership}
-                  </p>
+                  {/* <Image 
+                    src={lienminhchinhtri} 
+                    alt="Liên Minh Chính Trị" 
+                    className="rounded-md shadow-md w-64 h-64 object-cover mx-auto" 
+                  /> */}
+                  <iframe
+                    src="https://www.youtube.com/embed/I9x7tSBR5NI"
+                    className="rounded-md shadow-md w-full h-80 mx-auto"
+                    allowFullScreen
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  />
                 </div>
               </div>
             </div>
@@ -426,9 +442,15 @@ export default function Content() {
                     <div className="w-3 h-3 bg-secondary rounded-full"></div>
                     <div className="w-3 h-3 bg-primary rounded-full"></div>
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  {/* <p className="text-sm text-muted-foreground">
                     {contentText.alliance.cultural.values}
-                  </p>
+                  </p> */}
+                  <iframe
+                    src="https://www.youtube.com/embed/2c-sC7ppCZM?si=dezBjHZiGG5p8rZB"
+                    className="rounded-md shadow-md w-full h-80 mx-auto"
+                    allowFullScreen
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  />
                 </div>
               </div>
             </div>

@@ -1,3 +1,7 @@
+'use client';
+
+'use client';
+
 import Link from "next/link";
 import { Star } from "lucide-react";
 
@@ -89,6 +93,23 @@ export default function Home() {
                   Thông tin liên hệ và phản hồi
                 </p>
               </Link>
+            </div>
+          </div>
+
+          {/* Animated Logo Demo Section */}
+          <div className="bg-card rounded-lg border p-12 text-center mb-12">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl font-bold text-foreground mb-6">
+                🎯 Logo Animation Demo
+              </h2>
+              <p className="text-muted-foreground mb-8">
+                Animated version of the Party logo with outline drawing, fill, and glow effects
+              </p>
+              <div className="flex justify-center bg-muted/30 rounded-lg p-8">
+              </div>
+              <p className="text-sm text-muted-foreground mt-4">
+                Click the logo to replay the animation
+              </p>
             </div>
           </div>
 
