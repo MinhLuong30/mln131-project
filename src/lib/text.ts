@@ -146,3 +146,33 @@ export const contentText = {
     copyright: "© 2025 - Tài liệu giáo dục về lịch sử Đảng Cộng sản Việt Nam"
   }
 };
+
+// Text formatting utilities for chat
+export const formatChatResponse = (text: string): string => {
+  if (!text) return "";
+  
+  // Remove any potential harmful HTML tags
+  const sanitized = text
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+    .replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, '')
+    .replace(/<embed\b[^<]*(?:(?!<\/embed>)<[^<]*)*<\/embed>/gi, '');
+  
+  // Clean up excessive whitespace and line breaks
+  const cleaned = sanitized
+    .replace(/\n{3,}/g, '\n\n') // Max 2 consecutive line breaks
+    .replace(/[ \t]{2,}/g, ' ') // Multiple spaces to single space
+    .trim();
+  
+  return cleaned;
+};
+
+export const isValidVietnameseResponse = (text: string): boolean => {
+  if (!text || text.length < 5) return false;
+  
+  // Check if the response contains Vietnamese characters
+  const vietnamesePattern = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i;
+  
+  // Should contain Vietnamese characters or be a reasonable length response
+  return vietnamesePattern.test(text) || text.length > 50;
+};
