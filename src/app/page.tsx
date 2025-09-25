@@ -1,9 +1,8 @@
 'use client';
 
-'use client';
-
 import Link from "next/link";
 import { Star } from "lucide-react";
+import MindMapDiagram from "@/components/MindMapDiagram";
 
 export default function Home() {
   return (
@@ -95,6 +94,9 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          {/* Mind Map Diagram Section */}
+          <MindMapDiagram />
 
           {/* Animated Logo Demo Section */}
           <div className="bg-card rounded-lg border p-12 text-center mb-12">
