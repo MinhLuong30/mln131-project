@@ -18,6 +18,7 @@ import { contentText } from "@/lib/text";
 
 export default function Content() {
   const [activeSection, setActiveSection] = useState("concept");
+  const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
     // Set initial active section based on scroll position
@@ -33,8 +34,21 @@ export default function Content() {
       }
     };
 
+    // Handle sticky navigation width change
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const heroSection = document.querySelector('.vietnam-gradient') as HTMLElement;
+      const heroHeight = heroSection ? heroSection.offsetHeight : 0;
+      
+      setIsSticky(scrollTop > heroHeight - 100); // Start transition 100px before hero ends
+    };
+
     // Set initial section on load
     setTimeout(setInitialActiveSection, 100);
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
 
     // Intersection Observer for scroll animations
     const fadeObserver = new IntersectionObserver(
@@ -76,13 +90,14 @@ export default function Content() {
     return () => {
       fadeObserver.disconnect();
       navObserver.disconnect();
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen min-w-screen justify-center items-center flex flex-col bg-background text-foreground">
       {/* Hero Section */}
-      <section className="vietnam-gradient text-white py-20">
+      <section className="vietnam-gradient min-w-screen text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <div className="animate-fade-in-up">
             <div className="relative mb-6 flex justify-center">
@@ -107,9 +122,11 @@ export default function Content() {
       </section>
 
       {/* Navigation */}
-      <nav className="bg-card border-b sticky top-16 z-40">
+      <nav className={`bg-card backdrop-blur-xl border-b sticky top-16 z-40 transition-all duration-500 ease-in-out ${
+        isSticky ? 'w-[40%]  rounded-2xl ' : 'w-full'
+      } mx-auto`}>
         <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-wrap justify-center gap-4 text-sm">
+          <div className={`flex flex-wrap justify-center gap-4 ${isSticky ? 'text-xs' : 'text-base'}`}>
             <a
               href="#concept"
               className={`transition-all duration-300 px-4 py-2 rounded-lg font-medium ${
@@ -243,7 +260,7 @@ export default function Content() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Working Class */}
             <div className="bg-card p-8 rounded-lg border relative overflow-hidden">
-              <div className="absolute inset-0 bg-[url('/lienminhchinhtri.jpg')] bg-cover bg-center opacity-20 clip-path-diagonal"></div>
+              {/* <div className="absolute inset-0 bg-[url('/lienminhchinhtri.jpg')] bg-cover bg-center opacity-20 clip-path-diagonal"></div> */}
               <div className="relative z-10">
               <div className="flex items-center mb-4">
                 <Hammer className="h-8 w-8 text-primary mr-3" />
@@ -459,7 +476,7 @@ export default function Content() {
       </main>
 
       {/* Footer */}
-      <footer className="vietnam-gradient text-white py-12 mt-20">
+      <footer className="vietnam-gradient min-w-screen text-white py-12 mt-20">
         <div className="container mx-auto px-4 text-center">
           <div className="relative mb-4 flex justify-center">
             <Star className="h-12 w-12 animate-pulse-red text-white fill-current" />
