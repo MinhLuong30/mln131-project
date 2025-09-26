@@ -5,20 +5,31 @@ import { useChat } from "../contexts/ChatContext";
 
 // Simple markdown-style formatter for chat messages
 const formatMessage = (content: string) => {
-  return content
-    // Bold text **text** -> <strong>text</strong>
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    // Italic text *text* -> <em>text</em>
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    // Headers ### -> larger text
-    .replace(/^### (.*$)/gm, '<div class="text-base font-semibold mt-2 mb-1">$1</div>')
-    .replace(/^## (.*$)/gm, '<div class="text-lg font-semibold mt-3 mb-2">$1</div>')
-    .replace(/^# (.*$)/gm, '<div class="text-xl font-bold mt-4 mb-2">$1</div>')
-    // Bullet points
-    .replace(/^\* (.*$)/gm, '<div class="ml-2">• $1</div>')
-    .replace(/^- (.*$)/gm, '<div class="ml-2">• $1</div>')
-    // Preserve line breaks
-    .replace(/\n/g, '<br>');
+  return (
+    content
+      // Bold text **text** -> <strong>text</strong>
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      // Italic text *text* -> <em>text</em>
+      .replace(/\*(.*?)\*/g, "<em>$1</em>")
+      // Headers ### -> larger text
+      .replace(
+        /^### (.*$)/gm,
+        '<div class="text-base font-semibold mt-2 mb-1">$1</div>'
+      )
+      .replace(
+        /^## (.*$)/gm,
+        '<div class="text-lg font-semibold mt-3 mb-2">$1</div>'
+      )
+      .replace(
+        /^# (.*$)/gm,
+        '<div class="text-xl font-bold mt-4 mb-2">$1</div>'
+      )
+      // Bullet points
+      .replace(/^\* (.*$)/gm, '<div class="ml-2">• $1</div>')
+      .replace(/^- (.*$)/gm, '<div class="ml-2">• $1</div>')
+      // Preserve line breaks
+      .replace(/\n/g, "<br>")
+  );
 };
 
 export default function ChatBubble() {
@@ -129,10 +140,10 @@ export default function ChatBubble() {
                       : "bg-muted text-muted-foreground"
                   }`}
                 >
-                  <div 
+                  <div
                     className="text-sm whitespace-pre-wrap"
                     dangerouslySetInnerHTML={{
-                      __html: formatMessage(message.content)
+                      __html: formatMessage(message.content),
                     }}
                   />
                   <p

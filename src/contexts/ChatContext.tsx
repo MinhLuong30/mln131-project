@@ -28,7 +28,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       id: "1",
       role: "assistant",
       content:
-        "Xin chào! Tôi là trợ lý AI của bạn. Tôi có thể giúp gì cho bạn hôm nay?",
+        "📚 Xin chào! Tôi là trợ lý ảo môn MLN131 - Lý luận Chính trị. Tôi chuyên hỗ trợ học tập về chủ đề 'LIÊN MINH GIAI CẤP, TẦNG LỚP TRONG THỜI KỲ QUÁ ĐỘ LÊN CHỦ NGHĨA XÃ HỘI'. \n\nTôi sẵn sàng giúp bạn học tập hiệu quả! 🎯",
       timestamp: new Date(),
     },
   ]);
@@ -71,13 +71,14 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
 
         // Sanitize and format the response text
         let sanitizedContent = data.message || "";
-        
+
         // Format and clean the response
         sanitizedContent = formatChatResponse(sanitizedContent);
-        
+
         // Validate the response quality
         if (!isValidVietnameseResponse(sanitizedContent)) {
-          sanitizedContent = "Xin lỗi, tôi không thể tạo phản hồi phù hợp. Vui lòng thử lại với câu hỏi khác.";
+          sanitizedContent =
+            "Xin lỗi, tôi không thể tạo phản hồi phù hợp. Vui lòng thử lại với câu hỏi khác.";
         }
 
         const assistantMessage: ChatMessage = {
@@ -90,8 +91,8 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         setMessages((prev) => [...prev, assistantMessage]);
       } catch (error) {
         setError(
-          error instanceof Error 
-            ? error.message 
+          error instanceof Error
+            ? error.message
             : "Đã xảy ra lỗi. Vui lòng thử lại."
         );
       } finally {
@@ -111,7 +112,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         id: "1",
         role: "assistant",
         content:
-          "Xin chào! Tôi là trợ lý AI của bạn. Tôi có thể giúp gì cho bạn hôm nay?",
+          "📚 Xin chào! Tôi là trợ lý ảo môn MLN131 - Lý luận Chính trị. Tôi chuyên hỗ trợ học tập về chủ đề 'LIÊN MINH GIAI CẤP, TẦNG LỚP TRONG THỜI KỲ QUÁ ĐỘ LÊN CHỦ NGHĨA XÃ HỘI'.\nTôi sẵn sàng giúp bạn học tập hiệu quả! 🎯",
         timestamp: new Date(),
       },
     ]);
